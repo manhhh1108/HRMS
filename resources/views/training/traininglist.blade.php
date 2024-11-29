@@ -179,100 +179,97 @@
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('form/training/save') }}" method="POST">
-                        <div class="col-sm-6">
-                            <div class="form-group"> <label class="col-form-label">Training Type</label> <select class="select" name="training_type" @error('training_type') is-invalid @enderror>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="col-form-label">Training Type</label>
-                                            <select class="select" id="e_training_type" name="training_type">
-                                                <option selected disabled>-- Select --</option>
-                                                <option value="Node Training">Node Training</option>
-                                                <option value="Swift Training">Swift Training</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-form-label">Trainer</label>
-                                        <select class="select" id="trainer" name="trainer" class="@error('trainer') is-invalid @enderror">
-                                            <option selected disabled>-- Select --</option>
-                                            @foreach ($users as $user)
-                                            <option value="{{ $user->user_id }}">{{ $user->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('trainer')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Training Type</label>
+                            <select class="select form-control" id="e_training_type" name="training_type" required>
+                                <option selected disabled>-- Select --</option>
+                                @foreach ($training_types as $item)
+                                <option value="{{ $item->id }}">{{ $item->type }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-form-label">Trainer</label>
+                            <select class="select" id="trainer" name="trainer" class="@error('trainer') is-invalid @enderror">
+                                <option selected disabled>-- Select --</option>
+                                @foreach ($users as $user)
+                                <option value="{{ $user->user_id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('trainer')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                                    <!-- Employees -->
-                                    <div class="form-group">
-                                        <label class="col-form-label">Employees</label>
-                                        <select class="select" id="employees" name="employees" class="@error('employees') is-invalid @enderror">
-                                            <option selected disabled>-- Select --</option>
-                                            @foreach ($users as $employee)
-                                            <option value="{{ $employee->user_id }}">{{ $employee->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('employees')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                        <!-- Employees -->
+                        <div class="form-group">
+                            <label class="col-form-label">Employees</label>
+                            <select class="select" id="employees" name="employees" class="@error('employees') is-invalid @enderror">
+                                <option selected disabled>-- Select --</option>
+                                @foreach ($users as $employee)
+                                <option value="{{ $employee->user_id }}">{{ $employee->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('employees')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                                    <!-- Training Cost -->
-                                    <div class="form-group">
-                                        <label class="col-form-label">Training Cost <span class="text-danger">*</span></label>
-                                        <input class="form-control @error('training_cost') is-invalid @enderror" type="text" name="training_cost">
-                                        @error('training_cost')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                        <!-- Training Cost -->
+                        <div class="form-group">
+                            <label class="col-form-label">Training Cost <span class="text-danger">*</span></label>
+                            <input class="form-control @error('training_cost') is-invalid @enderror" type="text" name="training_cost">
+                            @error('training_cost')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                                    <!-- Start Date -->
-                                    <div class="form-group">
-                                        <label>Start Date <span class="text-danger">*</span></label>
-                                        <div class="cal-icon">
-                                            <input class="form-control datetimepicker @error('start_date') is-invalid @enderror" type="text" name="start_date">
-                                        </div>
-                                        @error('start_date')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                        <!-- Start Date -->
+                        <div class="form-group">
+                            <label>Start Date <span class="text-danger">*</span></label>
+                            <div class="cal-icon">
+                                <input class="form-control datetimepicker @error('start_date') is-invalid @enderror" type="text" name="start_date">
+                            </div>
+                            @error('start_date')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                                    <!-- End Date -->
-                                    <div class="form-group">
-                                        <label>End Date <span class="text-danger">*</span></label>
-                                        <div class="cal-icon">
-                                            <input class="form-control datetimepicker @error('end_date') is-invalid @enderror" type="text" name="end_date">
-                                        </div>
-                                        @error('end_date')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                        <!-- End Date -->
+                        <div class="form-group">
+                            <label>End Date <span class="text-danger">*</span></label>
+                            <div class="cal-icon">
+                                <input class="form-control datetimepicker @error('end_date') is-invalid @enderror" type="text" name="end_date">
+                            </div>
+                            @error('end_date')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                                    <!-- Description -->
-                                    <div class="form-group">
-                                        <label>Description <span class="text-danger">*</span></label>
-                                        <textarea class="form-control @error('description') is-invalid @enderror" rows="3" name="description"></textarea>
-                                        @error('description')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label>Description <span class="text-danger">*</span></label>
+                            <textarea class="form-control @error('description') is-invalid @enderror" rows="3" name="description"></textarea>
+                            @error('description')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                                    <!-- Status -->
-                                    <div class="form-group">
-                                        <label class="col-form-label">Status</label>
-                                        <select class="select @error('status') is-invalid @enderror" name="status">
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
-                                        </select>
-                                        @error('status')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
-                                    </div>
+                        <!-- Status -->
+                        <div class="form-group">
+                            <label class="col-form-label">Status</label>
+                            <select class="select @error('status') is-invalid @enderror" name="status">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            @error('status')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                                    <div class="submit-section">
-                                        <button type="submit" class="btn btn-primary submit-btn">Submit</button>
-                                    </div>
+                        <div class="submit-section">
+                            <button type="submit" class="btn btn-primary submit-btn">Submit</button>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -20,9 +20,9 @@ class TrainingController extends Controller
         $users = DB::table('users')->get();
         // Log::info("trainers::" .json_encode($trainings));
 
-        // $training_type = DB::table('training_types')->get();
+        $training_types = DB::table('training_types')->get();
         // Log::info("type::" .json_encode($training_type));
-        return view('training.traininglist', compact('users', 'trainings'));
+        return view('training.traininglist', compact('users', 'trainings','training_types'));
     }
 
     /**  Save record */
