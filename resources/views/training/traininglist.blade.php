@@ -29,19 +29,8 @@
                     <table class="table table-striped custom-table mb-0 datatable">
                         <thead>
                             <tr>
-                                <th style="width: 30px;">No</th>
+                                <th style="width: 30px;">#</th>
                                 <th>Training Type</th>
-                                <th hidden></th>
-                                <th hidden></th>
-                                <th hidden></th>
-                                <th hidden></th>
-                                <th hidden></th>
-                                <th hidden></th>
-                                <th hidden></th>
-                                <th hidden></th>
-                                <th hidden></th>
-                                <th hidden></th>
-                                <th hidden></th>
                                 <th>Trainer</th>
                                 <th>Employee</th>
                                 <th>Time Duration</th>
@@ -166,7 +155,6 @@
     </div>
     <!-- /Page Content -->
 
-
     <!-- Add Training List Modal -->
     <div id="add_training" class="modal custom-modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -179,94 +167,82 @@
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('form/training/save') }}" method="POST">
-                        <div class="form-group">
-                            <label class="col-form-label">Training Type</label>
-                            <select class="select form-control" id="e_training_type" name="training_type" required>
-                                <option selected disabled>-- Select --</option>
-                                @foreach ($training_types as $item)
-                                <option value="{{ $item->id }}">{{ $item->type }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-form-label">Trainer</label>
-                            <select class="select" id="trainer" name="trainer" class="@error('trainer') is-invalid @enderror">
-                                <option selected disabled>-- Select --</option>
-                                @foreach ($users as $user)
-                                <option value="{{ $user->user_id }}">{{ $user->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('trainer')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- Employees -->
-                        <div class="form-group">
-                            <label class="col-form-label">Employees</label>
-                            <select class="select" id="employees" name="employees" class="@error('employees') is-invalid @enderror">
-                                <option selected disabled>-- Select --</option>
-                                @foreach ($users as $employee)
-                                <option value="{{ $employee->user_id }}">{{ $employee->name }}</option>
-                                @endforeach
-                            </select>
-                            @error('employees')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- Training Cost -->
-                        <div class="form-group">
-                            <label class="col-form-label">Training Cost <span class="text-danger">*</span></label>
-                            <input class="form-control @error('training_cost') is-invalid @enderror" type="text" name="training_cost">
-                            @error('training_cost')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- Start Date -->
-                        <div class="form-group">
-                            <label>Start Date <span class="text-danger">*</span></label>
-                            <div class="cal-icon">
-                                <input class="form-control datetimepicker @error('start_date') is-invalid @enderror" type="text" name="start_date">
+                        @csrf
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Training Type</label>
+                                    <select class="select" name="training_type" @error('training_type') is-invalid @enderror>
+                                        <option selected disabled>-- Select --</option>
+                                        @foreach ($training_types as $item)
+                                        <option value="{{ $item->type }}" data-training_type_id="{{ $item->id }}">{{ $item->type }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                            @error('start_date')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- End Date -->
-                        <div class="form-group">
-                            <label>End Date <span class="text-danger">*</span></label>
-                            <div class="cal-icon">
-                                <input class="form-control datetimepicker @error('end_date') is-invalid @enderror" type="text" name="end_date">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Trainer</label>
+                                    <select class="select" id="trainer" name="trainer" @error('trainer') is-invalid @enderror>
+                                        <option selected disabled>-- Select --</option>
+                                        @foreach ($users as $items )
+                                        <option value="{{ $items->name }}" data-trainer_id={{ $items->user_id }}>{{ $items->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                            @error('end_date')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                            <input type="hidden" class="form-control" id="trainer_id" name="trainer_id" readonly>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Employees</label>
+                                    <select class="select" id="employees" name="employees" @error('employees') is-invalid @enderror>
+                                        <option selected disabled>-- Select --</option>
+                                        @foreach ($users as $items )
+                                        <option value="{{ $items->name }}" data-employees_id={{ $items->user_id }}>{{ $items->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <input type="hidden" class="form-control" id="employees_id" name="employees_id" readonly>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-form-label">Training Cost <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" name="training_cost" @error('training_cost') is-invalid @enderror>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Start Date <span class="text-danger">*</span></label>
+                                    <div class="cal-icon">
+                                        <input class="form-control datetimepicker @error('start_date') is-invalid @enderror" type="text" name="start_date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>End Date <span class="text-danger">*</span></label>
+                                    <div class="cal-icon">
+                                        <input class="form-control datetimepicker @error('end_date') is-invalid @enderror" type="text" name="end_date">
+                                    </div>
+                                </div>
+                            </div>
 
-                        <!-- Description -->
-                        <div class="form-group">
-                            <label>Description <span class="text-danger">*</span></label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" rows="3" name="description"></textarea>
-                            @error('description')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Description <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" rows="3" name="description" @error('description') is-invalid @enderror></textarea>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-form-label">Status</label>
+                                    <select class="select" name="status" @error('status') is-invalid @enderror>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-
-                        <!-- Status -->
-                        <div class="form-group">
-                            <label class="col-form-label">Status</label>
-                            <select class="select @error('status') is-invalid @enderror" name="status">
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-                            @error('status')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
                         <div class="submit-section">
                             <button type="submit" class="btn btn-primary submit-btn">Submit</button>
                         </div>
@@ -276,8 +252,6 @@
         </div>
     </div>
     <!-- /Add Training List Modal -->
-
-
 
     <!-- Edit Training List Modal -->
     <div id="edit_training" class="modal custom-modal fade" role="dialog">
@@ -409,6 +383,24 @@
 </div>
 <!-- /Page Wrapper -->
 @section('script')
+<script>
+    // select auto id and email
+    $('#trainer').on('change', function() {
+        $('#trainer_id').val($(this).find(':selected').data('trainer_id'));
+    });
+    $('#employees').on('change', function() {
+        $('#employees_id').val($(this).find(':selected').data('employees_id'));
+    });
+</script>
+<script>
+    // select auto id and email
+    $('#e_trainer').on('change', function() {
+        $('#e_trainer_id').val($(this).find(':selected').data('e_trainer_id'));
+    });
+    $('#e_employees').on('change', function() {
+        $('#e_employees_id').val($(this).find(':selected').data('e_employees_id'));
+    });
+</script>
 
 {{-- update js --}}
 <script>
@@ -421,10 +413,26 @@
         $('#e_start_date').val(_this.find('.start_date').text());
         $('#e_end_date').val(_this.find('.end_date').text());
         $('#e_description').val(_this.find('.description').text());
-        $('#e_training_type').val(_this.find('.training_type').text()).change();
-        $('#e_trainer').val(_this.find('.trainer').text()).change();
-        $('#e_employees').val(_this.find('.employees').text()).change();
-        $('#e_status').val(_this.find('.status').text()).change();
+
+        // training_type
+        var training_type = (_this.find(".training_type").text());
+        var _option = '<option selected value="' + training_type + '">' + _this.find('.training_type').text() + '</option>'
+        $(_option).appendTo("#e_training_type");
+
+        // trainer
+        var trainer = (_this.find(".trainer").text());
+        var _option = '<option selected value="' + trainer + '">' + _this.find('.trainer').text() + '</option>'
+        $(_option).appendTo("#e_trainer");
+
+        // employees
+        var employees = (_this.find(".employees").text());
+        var _option = '<option selected value="' + employees + '">' + _this.find('.employees').text() + '</option>'
+        $(_option).appendTo("#e_employees");
+
+        // status
+        var status = (_this.find(".status").text());
+        var _option = '<option selected value="' + status + '">' + _this.find('.status').text() + '</option>'
+        $(_option).appendTo("#e_status");
     });
 </script>
 
@@ -435,6 +443,5 @@
         $('.e_id').val(_this.find('.id').text());
     });
 </script>
-
-
+@endsection
 @endsection
