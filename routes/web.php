@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -163,7 +164,7 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
                     Route::post('/delete', 'deleteRecordDepartment')->name('form/department/delete');  
                 });
                 // ----------------------- Designations ------------------------
-                Route::prefix('designations')->group(function () {
+                Route::prefix('designations')->controller(EmployeeController::class)->group(function () {
                     Route::get('/page', 'designationsIndex')->name('form/designations/page');    
                     Route::post('/save', 'saveRecordDesignations')->name('form/designations/save');    
                     Route::post('/update', 'updateRecordDesignations')->name('form/designations/update');    
