@@ -15,7 +15,9 @@ class TrainingTypeController extends Controller
         $training_type = DB::table('training_types')->get();
         Log::info("type::" . json_encode($training_type));
         return view('trainingType.trainingType', compact('training_type'));
+       
     }
+    
 
 
     /** Save a new training type record */

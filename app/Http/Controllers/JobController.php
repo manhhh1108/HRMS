@@ -437,11 +437,6 @@ class JobController extends Controller
         return view('job.candidates');
     }
 
-    /** Schedule Timing */
-    public function scheduleTimingIndex()
-    {
-        return view('job.scheduletiming');
-    }
 
     /** Aptitude Result */
     public function aptituderesultIndex()

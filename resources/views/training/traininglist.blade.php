@@ -183,11 +183,16 @@
                             <div class="form-group"> <label class="col-form-label">Training Type</label> <select class="select" name="training_type" @error('training_type') is-invalid @enderror>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label class="col-form-label">Training Type</label>
-                                            <select class="select" id="e_training_type" name="training_type">
-                                                <option selected disabled>-- Select --</option>
-                                                <option value="Node Training">Node Training</option>
-                                                <option value="Swift Training">Swift Training</option>
+                                            <label class="col-form-label" for="e_training_type">Training Type</label>
+                                            <select class="select" id="e_training_type" name="training_type" onchange="showTrainingDetails()" required>
+                                                <option value="" selected disabled>-- Select --</option>
+                                                @if (!empty($training_types) && $training_types->count())
+                                                @foreach ($training_types as $item)
+                                                <option value="{{ $item->id }}">{{ $item->type }}</option>
+                                                @endforeach
+                                                @else
+                                                <option value="" disabled>No training types available</option>
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
@@ -439,5 +444,5 @@
     });
 </script>
 
-@endsection
+
 @endsection
