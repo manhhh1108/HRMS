@@ -20,11 +20,9 @@ class TrainingController extends Controller
     // Truy vấn dữ liệu từ bảng users
     $users = DB::table('users')->get();
 
-    // Lấy dữ liệu từ bảng training_types
-    $training_types = DB::table('training_types')->get();
-
-    // Trả về view với các biến đã truyền
-    return view('training.traininglist', compact('users', 'trainings', 'training_types'));
+        $training_types = DB::table('training_types')->get();
+        // Log::info("type::" .json_encode($training_type));
+        return view('training.traininglist', compact('users', 'trainings','training_types'));
     }
 
     /**  Save record */
