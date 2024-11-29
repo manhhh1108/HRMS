@@ -11,7 +11,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>Dashboard - HRMS</title>
 	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('assets/img/favicon.png') }}">
+	<link rel="shortcut icon" type="image/x-icon" href="{{ URL::to('assets/img/logo.png') }}">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="{{ URL::to('assets/css/bootstrap.min.css') }}">
 	<!-- Fontawesome CSS -->

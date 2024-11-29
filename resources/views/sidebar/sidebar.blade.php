@@ -23,7 +23,7 @@
                         <a href="#" class="{{ set_active(['search/user/list','userManagement','activity/log','activity/login/logout']) ? 'noti-dot' : '' }}">
                             <i class="la la-user-secret"></i> <span> User Controller</span> <span class="menu-arrow"></span>
                         </a>
-                        <ul style="{{ request()->is('/*') ? 'display: block;' : 'display: none;' }}">
+                    <ul style="{{ request()->is('/*') ? 'display: block;' : 'display: none;' }}">
                             <li><a class="{{set_active(['search/user/list','userManagement'])}}" href="{{ route('userManagement') }}">All User</a></li>
                         </ul>
                     </li>
@@ -42,7 +42,6 @@
                     <ul style="{{ request()->is('/*') ? 'display: block;' : 'display: none;' }}">
                         <li><a class="{{set_active(['all/employee/list','all/employee/card'])}} {{ request()->is('all/employee/view/edit/*','employee/profile/*') ? 'active' : '' }}" href="{{ route('all/employee/card') }}">All Employees</a></li>
                         <li><a class="{{set_active(['form/holidays/new'])}}" href="{{ route('form/holidays/new') }}">Holidays</a></li>
-                        <!-- <li><a class="{{set_active(['form/leaves/new'])}}" href="{{ route('form/leaves/new') }}">Leaves (Admin)  -->
                             <span class="badge badge-pill bg-primary float-right">1</span></a>
                         </li>
                         <li><a class="{{set_active(['form/leaves/employee/new'])}}" href="{{route('form/leaves/employee/new')}}">Leaves (Employee)</a></li>
@@ -51,30 +50,15 @@
                         <li><a class="{{set_active(['attendance/employee/page'])}}" href="{{ route('attendance/employee/page') }}">Attendance (Employee)</a></li>
                         <li><a class="{{set_active(['form/departments/page'])}}" href="{{ route('form/departments/page') }}">Departments</a></li>
                         <li><a class="{{set_active(['form/designations/page'])}}" href="{{ route('form/designations/page') }}">Designations</a></li>
-                        <!-- <li><a class="{{set_active(['form/timesheet/page'])}}" href="{{ route('form/timesheet/page') }}">Timesheet</a></li>
-                        <li><a class="{{set_active(['form/shiftscheduling/page'])}}" href="{{ route('form/shiftscheduling/page') }}">Shift & Schedule</a></li>
-                        <li><a class="{{set_active(['form/overtime/page'])}}" href="{{ route('form/overtime/page') }}">Overtime</a></li> -->
+                       
                     </ul>
                 </li>
                 <li class="menu-title"> <span>HR</span> </li>
-                <!-- <li class="{{set_active(['create/estimate/page','form/estimates/page','payments','expenses/page'])}} submenu">
-                    <a href="#" class="{{ set_active(['create/estimate/page','form/estimates/page','payments','expenses/page']) ? 'noti-dot' : '' }}">
-                        <i class="la la-files-o"></i>
-                        <span> Sales </span> 
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul style="{{ request()->is('/*') ? 'display: block;' : 'display: none;' }}">
-                        <li><a class="{{set_active(['create/estimate/page','form/estimates/page'])}} {{ request()->is('edit/estimate/*') ? 'active' : '' }}{{ request()->is('estimate/view/*') ? 'active' : '' }}" href="{{ route('form/estimates/page') }}">Estimates</a></li>
-                        <li><a class="{{set_active(['payments'])}}" href="{{ route('payments') }}">Payments</a></li>
-                        <li><a class="{{set_active(['expenses/page'])}}" href="{{ route('expenses/page') }}">Expenses</a></li>
-                    </ul>
-                </li> -->
                 <li class="{{set_active(['form/salary/page','form/payroll/items'])}} submenu">
                     <a href="#" class="{{ set_active(['form/salary/page','form/payroll/items']) ? 'noti-dot' : '' }}"><i class="la la-money"></i>
                     <span> Payroll </span> <span class="menu-arrow"></span></a>
                     <ul style="{{ request()->is('/*') ? 'display: block;' : 'display: none;' }}">
                         <li><a class="{{set_active(['form/salary/page'])}}" href="{{ route('form/salary/page') }}"> Employee Salary </a></li>
-                        <li><a href="{{ route('form/salary/page') }}"> Payslip </a></li>
                         <li><a class="{{set_active(['form/payroll/items'])}}" href="{{ route('form/payroll/items') }}"> Payroll Items </a></li>
                     </ul>
                 </li>
@@ -86,7 +70,6 @@
                         <li><a class="{{set_active(['form/invoice/reports/page'])}}" href="{{ route('form/invoice/reports/page') }}"> Invoice Report </a></li>
                         <li><a class="{{set_active(['form/payments/reports/page'])}}" href="{{ route('form/payments/reports/page') }}"> Payments Report </a></li>
                         <li><a class="{{set_active(['form/employee/reports/page'])}}" href="{{ route('form/employee/reports/page') }}"> Employee Report </a></li>
-                        <li><a class="{{set_active([''])}}" href="payslip-reports.html"> Payslip Report </a></li>
                         <li><a class="{{set_active([''])}}" href="attendance-reports.html"> Attendance Report </a></li>
                         <li><a class="{{set_active(['form/leave/reports/page'])}}" href="{{ route('form/leave/reports/page') }}"> Leave Report </a></li>
                         <li><a class="{{set_active(['form/daily/reports/page'])}}" href="{{ route('form/daily/reports/page') }}"> Daily Report </a></li>
