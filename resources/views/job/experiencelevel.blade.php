@@ -102,7 +102,7 @@
         </div>
         <!-- /Page Content -->
         
-        <!-- Add Employee Modal -->
+        <!-- Thêm nhân viên Modal -->
         <div id="add_employee" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -142,7 +142,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Add Employee Modal -->
+        <!-- /Thêm nhân viên Modal -->
 
         <!-- Edit Job Modal -->
         <div id="edit_job" class="modal custom-modal fade" role="dialog">

@@ -10,14 +10,14 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col">
-                        <h3 class="page-title">Department</h3>
+                        <h3 class="page-title">Phòng ban</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Department</li>
+                            <li class="breadcrumb-item active">Phòng ban</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_department"><i class="fa fa-plus"></i> Add Department</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_department"><i class="fa fa-plus"></i> Thêm phòng ban</a>
                     </div>
                 </div>
             </div>
@@ -31,8 +31,8 @@
                             <thead>
                                 <tr>
                                     <th style="width: 30px;">#</th>
-                                    <th>Department Name</th>
-                                    <th class="text-right">Action</th>
+                                    <th>Tên phòng ban</th>
+                                    <th class="text-right">Thao tác</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -45,8 +45,8 @@
                                     <div class="dropdown dropdown-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item  edit_department" href="#" data-toggle="modal" data-target="#edit_department"><i class="fa fa-pencil m-r-5"></i> Edit</a>
-                                            <a class="dropdown-item delete_department" href="#" data-toggle="modal" data-target="#delete_department"><i class="fa fa-trash-o m-r-5"></i> Delete</a>
+                                            <a class="dropdown-item  edit_department" href="#" data-toggle="modal" data-target="#edit_department"><i class="fa fa-pencil m-r-5"></i> Sửa</a>
+                                            <a class="dropdown-item delete_department" href="#" data-toggle="modal" data-target="#delete_department"><i class="fa fa-trash-o m-r-5"></i> Xóa</a>
                                         </div>
                                         </div>
                                     </td>
@@ -60,12 +60,12 @@
         </div>
         <!-- /Page Content -->
         
-        <!-- Add Department Modal -->
+        <!-- Thêm phòng ban Modal -->
         <div id="add_department" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Department</h5>
+                        <h5 class="modal-title">Thêm phòng ban</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -90,7 +90,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Add Department Modal -->
+        <!-- /Thêm phòng ban Modal -->
         
         <!-- Edit Department Modal -->
         <div id="edit_department" class="modal custom-modal fade" role="dialog">
