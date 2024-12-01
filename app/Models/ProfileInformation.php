@@ -23,4 +23,12 @@ class ProfileInformation extends Model
         'designation',
         'reports_to',
     ];
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department', 'id');
+    }
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class, 'designation', 'id');
+    }
 }

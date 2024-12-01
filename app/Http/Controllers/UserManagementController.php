@@ -7,6 +7,7 @@ use App\Models\PersonalInformation;
 use App\Models\ProfileInformation;
 use App\Rules\MatchOldPassword;
 use App\Models\BankInformation;
+use App\Models\Designation;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Form;
@@ -184,14 +185,19 @@ class UserManagementController extends Controller
         $bankInformation  = BankInformation::where('user_id', $profile)->first();
         $emergencyContact = UserEmergencyContact::where('user_id', $profile)->first();
         $users            = DB::table('users')->get();
-        $employeeProfile = DB::table('profile_information')->where('user_id', $profile)->first();
-
+        $designations = Designation::with('department')->get();
+        $departments = DB::table('departments')->get();
+        $employeeProfile = ProfileInformation::with(['department', 'designation'])
+            ->where('user_id', $profile)
+            ->first();
         // Check if employee profile exists
         if ($employeeProfile) {
             // Profile exists, return with all the data
             return view('usermanagement.profile_user', [
                 'information'       => $employeeProfile,
                 'user'              => $users,
+                'designations'      => $designations,
+                'departments'       => $departments,
                 'userInformation'   => $userInformation,
                 'emergencyContact'  => $emergencyContact,
                 'bankInformation'   => $bankInformation
@@ -201,6 +207,8 @@ class UserManagementController extends Controller
             return view('usermanagement.profile_user', [
                 'information'       => null,
                 'user'              => $users,
+                'designations'      => $designations,
+                'departments'       => $departments,
                 'userInformation'   => $userInformation
             ]);
         }
