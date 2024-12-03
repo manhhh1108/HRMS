@@ -7,10 +7,10 @@
             <div class="page-header">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h3 class="page-title">Profile</h3>
+                        <h3 class="page-title">Hồ sơ</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Profile</li>
+                            <li class="breadcrumb-item active">Hồ sơ</li>
                         </ul>
                     </div>
                 </div>
@@ -37,13 +37,13 @@
                                                 <h6 class="text-muted">{{ Session::get('department') }}</h6>
                                                 <small class="text-muted">{{ Session::get('position') }}</small>
                                                 <div class="staff-id">User ID : {{ Session::get('user_id') }}</div>
-                                                <div class="small doj text-muted">Date of Join : {{ Session::get('join_date') }}</div>
+                                                <div class="small doj text-muted">Ngày tham gia: {{ Session::get('join_date') }}</div>
                                             </div>
                                         </div>
                                         <div class="col-md-7">
                                             <ul class="personal-info">
                                                 <li>
-                                                    <div class="title">Phone:</div>
+                                                    <div class="title">Sđt:</div>
                                                     <div class="text"><a href="">{{ Session::get('phone_number') }}</a></div>
                                                 </li>
                                                 <li>
@@ -53,33 +53,33 @@
                                                 @if(!empty($information))
                                                     <li>
                                                         @if(Auth::user()->user_id == $information->user_id)
-                                                            <div class="title">Birthday:</div>
+                                                            <div class="title">Ngày sinh:</div>
                                                             <div class="text">{{date('d F, Y',strtotime($information->birth_date)) }}</div>
                                                         @else
-                                                            <div class="title">Birthday:</div>
+                                                            <div class="title">Ngày sinh:</div>
                                                             <div class="text">N/A</div>
                                                         @endif
                                                     </li>
                                                     <li>
                                                         @if(Auth::user()->user_id == $information->user_id)
-                                                        <div class="title">Address:</div>
+                                                        <div class="title">Địa chỉ:</div>
                                                         <div class="text">{{ $information->address }}</div>
                                                         @else
-                                                        <div class="title">Address:</div>
+                                                        <div class="title">Địa chỉ:</div>
                                                         <div class="text">N/A</div>
                                                         @endif
                                                     </li>
                                                     <li>
                                                         @if(Auth::user()->user_id == $information->user_id)
-                                                        <div class="title">Gender:</div>
+                                                        <div class="title">Giới tính:</div>
                                                         <div class="text">{{ $information->gender }}</div>
                                                         @else
-                                                        <div class="title">Gender:</div>
+                                                        <div class="title">Giới tính:</div>
                                                         <div class="text">N/A</div>
                                                         @endif
                                                     </li>
                                                     <li>
-                                                        <div class="title">Reports to:</div>
+                                                        <div class="title">Báo cáo tới:</div>
                                                         <div class="text">
                                                             <div class="avatar-box">
                                                                 <div class="avatar avatar-xs">
@@ -93,19 +93,19 @@
                                                     </li>
                                                     @else
                                                     <li>
-                                                        <div class="title">Birthday:</div>
+                                                        <div class="title">Ngày sinh:</div>
                                                         <div class="text">N/A</div>
                                                     </li>
                                                     <li>
-                                                        <div class="title">Address:</div>
+                                                        <div class="title">Địa chỉ:</div>
                                                         <div class="text">N/A</div>
                                                     </li>
                                                     <li>
-                                                        <div class="title">Gender:</div>
+                                                        <div class="title">Giới tính:</div>
                                                         <div class="text">N/A</div>
                                                     </li>
                                                     <li>
-                                                        <div class="title">Reports to:</div>
+                                                        <div class="title">Báo cáo tới:</div>
                                                         <div class="text">
                                                             <div class="avatar-box">
                                                                 <div class="avatar avatar-xs">
@@ -133,8 +133,8 @@
                 <div class="row user-tabs">
                     <div class="col-lg-12 col-md-12 col-sm-12 line-tabs">
                         <ul class="nav nav-tabs nav-tabs-bottom">
-                            <li class="nav-item"><a href="#emp_profile" data-toggle="tab" class="nav-link active">Profile</a></li>
-                            <li class="nav-item"><a href="#emp_projects" data-toggle="tab" class="nav-link">Projects</a></li>
+                            <li class="nav-item"><a href="#emp_profile" data-toggle="tab" class="nav-link active">Hồ sơ</a></li>
+                            <li class="nav-item"><a href="#emp_projects" data-toggle="tab" class="nav-link">Dự án</a></li>
                         </ul>
                     </div>
                 </div>
@@ -147,15 +147,15 @@
                         <div class="col-md-6 d-flex">
                             <div class="card profile-box flex-fill">
                                 <div class="card-body">
-                                    <h3 class="card-title">Emergency Contact
+                                    <h3 class="card-title">Liên hệ khẩn cấp 
                                         <a href="#" class="edit-icon" data-toggle="modal" data-target="#emergency_contact_modal">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                     </h3>
-                                    <h5 class="section-title">Primary</h5>
+                                    <h5 class="section-title">Người thân 1</h5>
                                     <ul class="personal-info">
                                         <li>
-                                            <div class="title">Name</div>
+                                            <div class="title">Tên</div>
                                             @if (!empty($emergencyContact->name_primary))
                                             <div class="text">{{ $emergencyContact->name_primary }}</div>
                                             @else
@@ -163,7 +163,7 @@
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">Relationship</div>
+                                            <div class="title">Mối quan hệ</div>
                                             @if (!empty($emergencyContact->relationship_primary))
                                             <div class="text">{{ $emergencyContact->relationship_primary }}</div>
                                             @else
@@ -171,7 +171,7 @@
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">Phone </div>
+                                            <div class="title">Sđt </div>
                                             @if (!empty($emergencyContact->phone_primary) && !empty($emergencyContact->phone_2_primary))
                                             <div class="text">{{ $emergencyContact->phone_primary }},{{ $emergencyContact->phone_2_primary }}</div>
                                             @else
@@ -180,10 +180,10 @@
                                         </li>
                                     </ul>
                                     <hr>
-                                    <h5 class="section-title">Secondary</h5>
+                                    <h5 class="section-title">Người thân 2</h5>
                                     <ul class="personal-info">
                                         <li>
-                                            <div class="title">Name</div>
+                                            <div class="title">Tên</div>
                                             @if (!empty($emergencyContact->name_secondary))
                                             <div class="text">{{ $emergencyContact->name_secondary }}</div>
                                             @else
@@ -191,7 +191,7 @@
                                             @endif
                                         </li>
                                         <li>
-                                            <div class="title">Relationship</div>
+                                            <div class="title">Mối quan hệ</div>
                                             @if (!empty($emergencyContact->relationship_secondary))
                                             <div class="text">{{ $emergencyContact->relationship_secondary }}</div>
                                             @else
@@ -815,7 +815,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Gender</label>
+                                                <label>Giới tính</label>
                                                 <select class="select form-control" id="gender" name="gender">
                                                     <option value="{{ $information->gender }}" {{ ( $information->gender == $information->gender) ? 'selected' : '' }}>{{ $information->gender }} </option>
                                                     <option value="Male">Male</option>
@@ -943,7 +943,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Gender</label>
+                                                <label>Giới tính</label>
                                                 <select class="select form-control" id="gender" name="gender">
                                                     <option value="Male">Male</option>
                                                     <option value="Female">Female</option>
@@ -1103,7 +1103,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Personal Information</h5>
+                        <h5 class="modal-title">Thông tin cá nhân</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -1185,7 +1185,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Personal Information</h5>
+                        <h5 class="modal-title">Thông tin cá nhân</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -1287,7 +1287,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Relationship <span class="text-danger">*</span></label>
+                                                    <label>Mối quan hệ <span class="text-danger">*</span></label>
                                                     <input class="form-control" type="text">
                                                 </div>
                                             </div>
@@ -1319,7 +1319,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Relationship <span class="text-danger">*</span></label>
+                                                    <label>Mối quan hệ <span class="text-danger">*</span></label>
                                                     <input class="form-control" type="text">
                                                 </div>
                                             </div>
@@ -1357,7 +1357,7 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Personal Information</h5>
+                        <h5 class="modal-title">Thông tin cá nhân</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -1383,7 +1383,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Relationship <span class="text-danger">*</span></label>
+                                                <label>Mối quan hệ <span class="text-danger">*</span></label>
                                                 @if (!empty($emergencyContact->relationship_primary))
                                                 <input type="text" class="form-control" name="relationship_primary" value="{{ $emergencyContact->relationship_primary }}">
                                                 @else
@@ -1393,7 +1393,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Phone <span class="text-danger">*</span></label>
+                                                <label>Sđt <span class="text-danger">*</span></label>
                                                 @if (!empty($emergencyContact->phone_primary))
                                                 <input type="text" class="form-control" name="phone_primary" value="{{ $emergencyContact->phone_primary }}">
                                                 @else
@@ -1403,7 +1403,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Phone 2</label>
+                                                <label>Sđt 2</label>
                                                 @if (!empty($emergencyContact->phone_2_primary))
                                                 <input type="text" class="form-control" name="phone_2_primary" value="{{ $emergencyContact->phone_2_primary }}">
                                                 @else
@@ -1431,7 +1431,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Relationship <span class="text-danger">*</span></label>
+                                                <label>Mối quan hệ <span class="text-danger">*</span></label>
                                                 @if (!empty($emergencyContact->relationship_secondary))
                                                 <input type="text" class="form-control" name="relationship_secondary" value="{{ $emergencyContact->relationship_secondary }}">
                                                 @else
@@ -1441,7 +1441,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Phone <span class="text-danger">*</span></label>
+                                                <label>Sđt <span class="text-danger">*</span></label>
                                                 @if (!empty($emergencyContact->phone_secondary))
                                                 <input type="text" class="form-control" name="phone_secondary" value="{{ $emergencyContact->phone_secondary }}">
                                                 @else
@@ -1451,7 +1451,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Phone 2</label>
+                                                <label>Sđt 2</label>
                                                 @if (!empty($emergencyContact->phone_2_secondary))
                                                 <input type="text" class="form-control" name="phone_2_secondary" value="{{ $emergencyContact->phone_2_secondary }}">
                                                 @else

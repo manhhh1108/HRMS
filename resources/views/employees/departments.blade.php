@@ -74,7 +74,7 @@
                         <form action="{{ route('form/departments/save') }}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label>Department Name <span class="text-danger">*</span></label>
+                                <label>Tên phòng ban <span class="text-danger">*</span></label>
                                 <input class="form-control @error('department') is-invalid @enderror" type="text" id="department" name="department">
                                 @error('department')
                                     <span class="invalid-feedback" role="alert">
@@ -92,12 +92,12 @@
         </div>
         <!-- /Thêm phòng ban Modal -->
         
-        <!-- Edit Department Modal -->
+        <!-- Sửa phòng ban Modal -->
         <div id="edit_department" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Department</h5>
+                        <h5 class="modal-title">Sửa phòng ban</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -107,7 +107,7 @@
                             @csrf
                             <input type="hidden" name="id" id="e_id" value="">
                             <div class="form-group">
-                                <label>Department Name <span class="text-danger">*</span></label>
+                                <label>Tên phòng ban <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="department_edit" name="department" value="">
                             </div>
                             <div class="submit-section">
@@ -118,7 +118,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Edit Department Modal -->
+        <!-- /Sửa phòng ban Modal -->
 
         <!-- Delete Department Modal -->
         <div class="modal custom-modal fade" id="delete_department" role="dialog">

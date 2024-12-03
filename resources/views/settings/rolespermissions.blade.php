@@ -153,27 +153,6 @@
                                         <input type="checkbox" class="option-input checkbox" checked>
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <td>Events</td>
-                                    <td class="text-center">
-                                        <input type="checkbox" class="option-input checkbox" checked>
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="checkbox" class="option-input checkbox" checked>
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="checkbox" class="option-input checkbox" checked>
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="checkbox" class="option-input checkbox" checked>
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="checkbox" class="option-input checkbox" checked>
-                                    </td>
-                                    <td class="text-center">
-                                        <input type="checkbox" class="option-input checkbox" checked>
-                                    </td>
-                                </tr> -->
                             </tbody>
                         </table>
                     </div>

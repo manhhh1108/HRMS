@@ -38,7 +38,7 @@
                                 <option value="{{ $name->role_type }}">{{ $name->role_type }}</option>
                             @endforeach
                         </select>
-                        <label class="focus-label">Role </label>
+                        <label class="focus-label">Vai trò </label>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3"> 

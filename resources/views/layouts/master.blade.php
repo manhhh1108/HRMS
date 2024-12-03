@@ -82,23 +82,8 @@
 			<a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
 			<!-- Header Menu -->
 			<ul class="nav user-menu">
-				<!-- Search -->
-				<!-- <li class="nav-item">
-					<div class="top-nav-search">
-						<a href="javascript:void(0);" class="responsive-search"> <i class="fa fa-search"></i> </a>
-						<form action="search.html">
-							<input class="form-control" type="text" placeholder="Search here">
-							<button class="btn" type="submit">
-								<i class="fa fa-search"></i>
-							</button>
-						</form>
-					</div>
-				</li> -->
-				<!-- /Search -->
-
 				
-
-				
+	
 				<li class="nav-item dropdown has-arrow main-drop">
 					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 						<span class="user-img">
