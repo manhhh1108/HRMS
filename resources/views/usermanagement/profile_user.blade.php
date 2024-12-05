@@ -58,7 +58,7 @@
                                             <ul class="personal-info">
                                                 <li>
                                                     <div class="title">Sđt:</div>
-                                                    <div class="text"><a href="">{{ Session::get('phone_number') }}</a></div>
+                                                    <div class="text"><a href="">{{ $information->phone_number ?? "" }}</a></div>
                                                 </li>
                                                 <li>
                                                     <div class="title">Email:</div>
@@ -1086,8 +1086,6 @@
                 </div>
             </div>
         </div>
-        <!-- /Profile Modal -->
-        @else
         <!-- Profile Modal -->
         <div id="profile_info" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -1184,8 +1182,6 @@
                 </div>
             </div>
         </div>
-        <!-- /Profile Modal -->
-        @endif
 
         <!-- Bank information Modal -->
         <div id="bank_information_modal" class="modal custom-modal fade" role="dialog">

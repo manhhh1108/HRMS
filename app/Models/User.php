@@ -74,7 +74,7 @@ class User extends Authenticatable
             'role_name' => 'required|string|max:255',
             'password'  => 'required|string|min:8|confirmed',
         ]);
-        
+
         try {
             $todayDate = Carbon::now()->toDayDateTimeString();
             $save             = new User;
@@ -95,5 +95,13 @@ class User extends Authenticatable
             return redirect()->back();
         }
     }
+    public function departments()
+    {
+        return $this->belongsTo(Department::class, 'department'); // 'department_id' là khóa ngoại
+    }
 
+    public function designations()
+    {
+        return $this->belongsTo(Designation::class, 'designation'); // 'designation_id' là khóa ngoại
+    }
 }

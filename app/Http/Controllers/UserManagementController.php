@@ -14,6 +14,7 @@ use App\Models\Form;
 use App\Models\User;
 use Carbon\Carbon;
 use Auth;
+use Flasher\Toastr\Laravel\Facade\Toastr as FacadeToastr;
 use Illuminate\Support\Facades\DB as DB;
 use Illuminate\Support\Facades\Log;
 use Session;
@@ -30,10 +31,11 @@ class UserManagementController extends Controller
         if (Session::get('role_name') == 'Admin') {
             $result      = DB::table('users')->get();
             $role_name   = DB::table('role_type_users')->get();
+            $designations    = DB::table('designations')->get();
             $position    = DB::table('position_types')->get();
             $department  = DB::table('departments')->get();
             $status_user = DB::table('user_types')->get();
-            return view('usermanagement.user_control', compact('result', 'role_name', 'position', 'department', 'status_user'));
+            return view('usermanagement.user_control', compact('result', 'role_name', 'position', 'designations', 'department', 'status_user'));
         } else {
             return redirect()->route('home');
         }
@@ -55,7 +57,8 @@ class UserManagementController extends Controller
         $columnSortOrder = $order_arr[0]['dir']; // asc or desc
         $searchValue     = $search_arr['value']; // Search value
 
-        $users =  DB::table('users');
+        // $users =  DB::table('users');
+        $users = User::with(['departments', 'designations']);
         $totalRecords = $users->count();
 
         // Search
@@ -75,12 +78,12 @@ class UserManagementController extends Controller
             'name',
             'user_id',
             'email',
-            'position',
+            // 'position',
             'phone_number',
             'join_date',
             'role_name',
             'status',
-            'department'
+            // 'department'
         ];
 
         // Apply search filter and get the total records with filter
@@ -91,7 +94,7 @@ class UserManagementController extends Controller
         })->count();
 
         // Retrieve filtered and sorted records
-        $records = $users->orderBy($columnName, $columnSortOrder)
+        $records = $users->with(['departments', 'designations'])->orderBy($columnName, $columnSortOrder)
             ->where(function ($query) use ($searchValue, $searchColumns) {
                 foreach ($searchColumns as $column) {
                     $query->orWhere($column, 'like', '%' . $searchValue . '%');
@@ -157,11 +160,16 @@ class UserManagementController extends Controller
                 "email"        => '<span class="email">' . $record->email . '</span>',
                 "position"     => '<span class="position">' . $record->position . '</span>',
                 "phone_number" => '<span class="phone_number">' . $record->phone_number . '</span>',
-                "join_date"    => $record->join_date,
-                "last_login"   => $last_login,
+                "join_date"    => Carbon::parse($record->join_date)->format('d/m/Y'),
+                // "last_login"   => $last_login,
                 "role_name"    => $role_name,
                 "status"       => $status,
-                "department"   => '<span class="department">' . $record->department . '</span>',
+                "department" => isset($record->departments) && isset($record->departments["department"])
+                    ? '<span class="department" department_id="' . $record->departments["id"]  . '">' . $record->departments["department"] . '</span>'
+                    : '<span class="department"></span>',
+                "designation" => isset($record->designations) && isset($record->designations["name"])
+                    ? '<span class="designation" designation_id="' . $record->designations["id"]  . '">' . $record->designations["name"] . '</span>'
+                    : '<span class="designation"></span>',
                 "action"       => $action,
             ];
         }
@@ -187,14 +195,14 @@ class UserManagementController extends Controller
         $users            = DB::table('users')->get();
         $designations = Designation::with('department')->get();
         $departments = DB::table('departments')->get();
-        $employeeProfile = ProfileInformation::with(['department', 'designation'])
+        $profile_information = ProfileInformation::with(['department', 'designation'])
             ->where('user_id', $profile)
             ->first();
         // Check if employee profile exists
-        if ($employeeProfile) {
+        if ($profile_information) {
             // Profile exists, return with all the data
             return view('usermanagement.profile_user', [
-                'information'       => $employeeProfile,
+                'information'       => $profile_information,
                 'user'              => $users,
                 'designations'      => $designations,
                 'departments'       => $departments,
@@ -205,7 +213,7 @@ class UserManagementController extends Controller
         } else {
             // No employee profile, return only the basic information
             return view('usermanagement.profile_user', [
-                'information'       => $employeeProfile,
+                'information'       => $profile_information,
                 'user'              => $users,
                 'designations'      => $designations,
                 'departments'       => $departments,
@@ -288,25 +296,28 @@ class UserManagementController extends Controller
     /** Save new user */
     public function addNewUserSave(Request $request)
     {
-        $request->validate([
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|string|email|max:255|unique:users',
-            'phone'     => 'required|min:11|numeric',
-            'role_name' => 'required|string|max:255',
-            'position'  => 'required|string|max:255',
-            'department' => 'required|string|max:255',
-            'status'    => 'required|string|max:255',
-            'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Added image file type and size validation
-            'password'  => 'required|string|min:8|confirmed',
-            'password_confirmation' => 'required',
-        ]);
+        // $request->validate([
+        //     'name'      => 'required|string|max:255',
+        //     'email'     => 'required|string|email|max:255|unique:users',
+        //     'phone'     => 'required|min:11|numeric',
+        //     'role_name' => 'required|string|max:255',
+        //     'position'  => 'required|string|max:255',
+        //     // 'department' => 'required|integer',
+        //     // 'designation' => 'required|integer',
+        //     'status'    => 'required|string|max:255',
+        //     'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Added image file type and size validation
+        //     'password'  => 'required|string|min:8|confirmed',
+        //     'password_confirmation' => 'required',
+        // ]);
 
         DB::beginTransaction();
         try {
             $todayDate = Carbon::now()->toDayDateTimeString();
 
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('assets/images'), $imageName);
+            if ($request->hasFile('image')) {
+                $imageName = time() . '.' . $request->image->extension();
+                $request->image->move(public_path('assets/images'), $imageName);
+            }
 
             $user = new User;
             $user->name         = $request->name;
@@ -316,20 +327,21 @@ class UserManagementController extends Controller
             $user->phone_number = $request->phone;
             $user->role_name    = $request->role_name;
             $user->position     = $request->position;
+            $user->designation     = $request->designation;
             $user->department   = $request->department;
             $user->status       = $request->status;
-            $user->avatar       = $imageName;
+            $user->avatar       = $imageName ?? "user.jpg";
             $user->password     = Hash::make($request->password);
             $user->save();
 
             DB::commit();
 
-            Toastr::success('Created new account successfully!', 'Success');
+            flash()->success('User updated successfully :)');
             return redirect()->route('userManagement');
         } catch (\Exception $e) {
             DB::rollback();
             Log::error('Failed to create new account', ['error' => $e->getMessage()]);
-            Toastr::error('Failed to create new account. Please try again.', 'Error');
+            flash()->error('Failed to create new account. Please try again.');
             return redirect()->back()->withInput();
         }
     }
@@ -343,25 +355,27 @@ class UserManagementController extends Controller
             $name      = $request->name;
             $email     = $request->email;
             $role_name = $request->role_name;
-            $position  = $request->position;
             $phone     = $request->phone;
             $department = $request->department;
+            $designation = $request->designation;
             $status    = $request->status;
             $image_name = $request->hidden_image;
-
+            Log::info("designation:::" . $request->designation);
             $dt = Carbon::now();
             $todayDate = $dt->toDayDateTimeString();
 
             $image = $request->file('images');
             if ($image) {
                 // Delete old image if not the default one
-                if ($image_name && $image_name != 'photo_defaults.jpg') {
+                if ($image_name && $image_name != 'user.jpg') {
                     // Delete the old image if it exists
                     unlink('assets/images/' . $image_name);
-                }
 
-                $image_name = time() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('assets/images'), $image_name);
+                    $image_name = time() . '.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('assets/images'), $image_name);
+                } else {
+                    $image_name = 'user.jpg';
+                }
             }
 
             $update = [
@@ -369,9 +383,9 @@ class UserManagementController extends Controller
                 'name'          => $name,
                 'role_name'     => $role_name,
                 'email'         => $email,
-                'position'      => $position,
                 'phone_number'  => $phone,
                 'department'    => $department,
+                'designation'    => $designation,
                 'status'        => $status,
                 'avatar'        => $image_name,
             ];
@@ -386,7 +400,7 @@ class UserManagementController extends Controller
                 'date_time'    => $todayDate,
             ];
 
-            DB::table('user_activity_logs')->insert($activityLog);
+            // DB::table('user_activity_logs')->insert($activityLog);
             User::where('user_id', $user_id)->update($update);
 
             DB::commit();
@@ -420,7 +434,7 @@ class UserManagementController extends Controller
                 'date_time'    => $todayDate,
             ];
 
-            DB::table('user_activity_logs')->insert($activityLog);
+            // DB::table('user_activity_logs')->insert($activityLog);
 
             // Handle the deletion of user-related information
             $userId = $request->id;

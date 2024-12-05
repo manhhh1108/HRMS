@@ -83,6 +83,8 @@ return array(
     'GrahamCampbell\\ResultType\\' => array($vendorDir . '/graham-campbell/result-type/src'),
     'Fruitcake\\Cors\\' => array($vendorDir . '/fruitcake/php-cors/src'),
     'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src/FontLib'),
+    'Flasher\\Toastr\\Prime\\' => array($vendorDir . '/php-flasher/flasher-toastr'),
+    'Flasher\\Toastr\\Laravel\\' => array($vendorDir . '/php-flasher/flasher-toastr-laravel'),
     'Flasher\\Prime\\' => array($vendorDir . '/php-flasher/flasher'),
     'Flasher\\Laravel\\' => array($vendorDir . '/php-flasher/flasher-laravel'),
     'Faker\\' => array($vendorDir . '/fakerphp/faker/src/Faker'),
