@@ -14,14 +14,14 @@
             <div class="page-header">
                 <div class="row align-lists-center">
                     <div class="col">
-                        <h3 class="page-title">Employee</h3>
+                        <h3 class="page-title">Nhân viên</h3>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                            <li class="breadcrumb-item active">Employee</li>
+                            <li class="breadcrumb-item active">Nhân viên</li>
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Thêm nhân viên</a>
                         <div class="view-icons">
                             <a href="{{ route('all/employee/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
                             <a href="{{ route('all/employee/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
@@ -38,23 +38,23 @@
                     <div class="col-sm-6 col-md-3">  
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" name="employee_id">
-                            <label class="focus-label">Employee ID</label>
+                            <label class="focus-label">ID</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">  
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" name="name">
-                            <label class="focus-label">Employee Name</label>
+                            <label class="focus-label">Tên nhân viên</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3"> 
                         <div class="form-group form-focus">
                             <input type="text" class="form-control floating" name="position">
-                            <label class="focus-label">Position</label>
+                            <label class="focus-label">vị trí</label>
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-3">  
-                        <button type="sumit" class="btn btn-success btn-block"> Search </button>  
+                        <button type="sumit" class="btn btn-success btn-block"> Tìm kiếm </button>  
                     </div>
                 </div>
             </form>
@@ -85,12 +85,12 @@
         </div>
         <!-- /Page Content -->
 
-        <!-- Add Employee Modal -->
+        <!-- Thêm nhân viên Modal -->
         <div id="add_employee" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Employee</h5>
+                        <h5 class="modal-title">Thêm nhân viên</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -101,7 +101,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label class="col-form-label">Full Name</label>
+                                        <label class="col-form-label">Tên</label>
                                         <select class="select select2s-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" id="name" name="name">
                                             <option value="">-- Select --</option>
                                             @foreach ($userList as $key=>$user )
@@ -119,7 +119,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Birth Date</label>
+                                        <label>Ngày sinh</label>
                                         <div class="cal-icon">
                                             <input class="form-control datetimepicker" type="text" id="birth_date" name="birth_date">
                                         </div>
@@ -127,22 +127,22 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Gender</label>
+                                        <label>Giới tính</label>
                                         <select class="select form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" id="gender" name="gender">
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
+                                            <option value="male">Nam</option>
+                                            <option value="female">Nữ</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">  
                                     <div class="form-group">
-                                        <label class="col-form-label">Employee ID <span class="text-danger">*</span></label>
+                                        <label class="col-form-label">ID <span class="text-danger">*</span></label>
                                         <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="Auto id employee" readonly>
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                        <label class="col-form-label">Line Manager</label>
+                                        <label class="col-form-label">Người quản lý</label>
                                         <select class="select select2s-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" id="line_manager" name="line_manager">
                                             <option selected disabled>-- Select --</option>
                                             @foreach ($userList as $key=>$user )
@@ -212,7 +212,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Add Employee Modal -->
+        <!-- /Thêm nhân viên Modal -->
         
     </div>
     <!-- /Page Wrapper -->

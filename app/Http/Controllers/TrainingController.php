@@ -13,12 +13,12 @@ class TrainingController extends Controller
     public function index()
     {
         $trainings = DB::table('trainings')
-            ->join('users', 'users.user_id','trainings.trainer_id')
-            ->select('trainings.*', 'users.avatar', 'users.user_id')
-            ->get();
+        ->join('users', 'users.user_id', 'trainings.trainer_id')
+        ->select('trainings.*', 'users.avatar', 'users.user_id')
+        ->get();
 
-        $users = DB::table('users')->get();
-        // Log::info("trainers::" .json_encode($trainings));
+    // Truy vấn dữ liệu từ bảng users
+    $users = DB::table('users')->get();
 
         $training_types = DB::table('training_types')->get();
         // Log::info("type::" .json_encode($training_type));

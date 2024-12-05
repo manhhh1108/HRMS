@@ -4,9 +4,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<meta name="description" content="SoengSouy Admin Template">
+	<meta name="description" content="Admin Template">
 	<meta name="keywords" content="admin, estimates, bootstrap, business, corporate, creative, management, minimal, modern, accounts, invoice, html5, responsive, CRM, Projects">
-	<meta name="author" content="SoengSouy Admin Template">
+	<meta name="author" content="Admin Template">
 	<meta name="robots" content="noindex, nofollow">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<title>Dashboard - HRMS</title>
@@ -82,23 +82,8 @@
 			<a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa fa-bars"></i></a>
 			<!-- Header Menu -->
 			<ul class="nav user-menu">
-				<!-- Search -->
-				<li class="nav-item">
-					<div class="top-nav-search">
-						<a href="javascript:void(0);" class="responsive-search"> <i class="fa fa-search"></i> </a>
-						<form action="search.html">
-							<input class="form-control" type="text" placeholder="Search here">
-							<button class="btn" type="submit">
-								<i class="fa fa-search"></i>
-							</button>
-						</form>
-					</div>
-				</li>
-				<!-- /Search -->
-
 				
-
-				
+	
 				<li class="nav-item dropdown has-arrow main-drop">
 					<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 						<span class="user-img">
@@ -107,9 +92,9 @@
 						<span>{{ Session::get('name') }}</span>
 					</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="{{ route('profile_user') }}">My Profile</a>
-						<a class="dropdown-item" href="{{ route('company/settings/page') }}">Settings</a>
-						<a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+						<a class="dropdown-item" href="{{ route('profile_user') }}">Hồ sơ của tôi</a>
+						<a class="dropdown-item" href="{{ route('company/settings/page') }}">Cài đặt</a>
+						<a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
 					</div>
 				</li>
 			</ul>
@@ -121,9 +106,9 @@
 					<i class="fa fa-ellipsis-v"></i>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
-					<a class="dropdown-item" href="{{ route('profile_user') }}">My Profile</a>
-					<a class="dropdown-item" href="{{ route('company/settings/page') }}">Settings</a>
-					<a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+					<a class="dropdown-item" href="{{ route('profile_user') }}">Hồ sơ của tôi</a>
+					<a class="dropdown-item" href="{{ route('company/settings/page') }}">Cài đặt</a>
+					<a class="dropdown-item" href="{{ route('logout') }}">Đăng xuất</a>
 				</div>
 			</div>
 			<!-- /Mobile Menu -->

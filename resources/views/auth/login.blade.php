@@ -8,8 +8,7 @@
                 <!-- /Account Logo -->
                 <div class="account-box">
                     <div class="account-wrapper">
-                        <h3 class="account-title">Login</h3>
-                        <p class="account-subtitle">Access to our dashboard</p>
+                        <h3 class="account-title">Đăng nhập</h3>
                         <!-- Account Form -->
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
@@ -25,7 +24,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col">
-                                        <label>Password</label>
+                                        <label>Mật khẩu </label>
                                     </div>
                                 </div>
                                 <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Enter Password">
@@ -42,16 +41,16 @@
                                     </div>
                                     <div class="col-auto">
                                         <a class="text-muted" href="{{ route('forget-password') }}">
-                                            Forgot password?
+                                            Quên mật khẩu?
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group text-center">
-                                <button class="btn btn-primary account-btn" type="submit">Login</button>
+                                <button class="btn btn-primary account-btn" type="submit">Đăng nhập</button>
                             </div>
                             <div class="account-footer">
-                                <p>Don't have an account yet? <a href="{{ route('register') }}">Register</a></p>
+                                <p>Bạn chưa có tài khoản? <a href="{{ route('register') }}">Đăng ký</a></p>
                             </div>
                         </form>
                         <!-- /Account Form -->

@@ -20,7 +20,7 @@
                         </ul>
                     </div>
                     <div class="col-auto float-right ml-auto">
-                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Add Employee</a>
+                        <a href="#" class="btn add-btn" data-toggle="modal" data-target="#add_employee"><i class="fa fa-plus"></i> Thêm nhân viên</a>
                         <div class="view-icons">
                             <a href="{{ route('all/employee/card') }}" class="grid-view btn btn-link active"><i class="fa fa-th"></i></a>
                             <a href="{{ route('all/employee/list') }}" class="list-view btn btn-link"><i class="fa fa-bars"></i></a>
@@ -108,12 +108,12 @@
         </div>
         <!-- /Page Content -->
       
-        <!-- Add Employee Modal -->
+        <!-- Thêm nhân viên Modal -->
         <div id="add_employee" class="modal custom-modal fade" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Employee</h5>
+                        <h5 class="modal-title">Thêm nhân viên</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -236,7 +236,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Add Employee Modal -->
+        <!-- /Thêm nhân viên Modal -->
     </div>
     <!-- /Page Wrapper -->
 @section('script')

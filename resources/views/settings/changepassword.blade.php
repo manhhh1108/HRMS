@@ -10,7 +10,6 @@
                 <li><a href="{{ route('company/settings/page') }}"><i class="la la-building"></i><span>Company Settings</span></a></li>
                 <li><a href="{{ route('roles/permissions/page') }}"><i class="la la-key"></i><span>Roles & Permissions</span></a></li>
                 <li class="active"><a href="{{ route('change/password') }}"><i class="la la-lock"></i><span>Change Password</span></a></li>
-                <li><a href="leave-type.html"><i class="la la-cogs"></i><span>Leave Type</span></a></li>
 
         </div>
     </div>

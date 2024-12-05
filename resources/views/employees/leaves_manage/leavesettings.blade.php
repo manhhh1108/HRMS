@@ -496,7 +496,7 @@
                                 <input type="text" class="form-control">
                             </div>
                             <div class="form-group leave-duallist">
-                                <label>Add employee</label>
+                                <label>Thêm nhân viên</label>
                                 <div class="row">
                                     <div class="col-lg-5 col-sm-5">
                                         <select name="customleave_from" id="customleave_select" class="form-control" size="5" multiple="multiple">
@@ -550,7 +550,7 @@
                                 <input type="text" class="form-control" value="4">
                             </div>
                             <div class="form-group leave-duallist">
-                                <label>Add employee</label>
+                                <label>Thêm nhân viên</label>
                                 <div class="row">
                                     <div class="col-lg-5 col-sm-5">
                                         <select name="edit_customleave_from" id="edit_customleave_select" class="form-control" size="5" multiple="multiple">
