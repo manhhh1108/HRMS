@@ -205,7 +205,7 @@ class UserManagementController extends Controller
         } else {
             // No employee profile, return only the basic information
             return view('usermanagement.profile_user', [
-                'information'       => null,
+                'information'       => $employeeProfile,
                 'user'              => $users,
                 'designations'      => $designations,
                 'departments'       => $departments,

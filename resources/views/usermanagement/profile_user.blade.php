@@ -44,7 +44,7 @@
                                         <ul class="personal-info">
                                             <li>
                                                 <div class="title">Phone:</div>
-                                                <div class="text"><a href="">{{ $information->phone_number }}</a></div>
+                                                <div class="text"><a href="">{{ $information->phone_number ?? "" }}</a></div>
                                             </li>
                                             <li>
                                                 <div class="title">Email:</div>
