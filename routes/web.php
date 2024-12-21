@@ -8,11 +8,9 @@ use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
-|--------------------------------------------------------------------------
+|------------------------------------------ --------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| 
 |
 */
 
@@ -274,6 +272,7 @@ Route::group(['namespace' => 'App\Http\Controllers'],function()
         Route::post('form/trainers/save', 'saveRecord')->middleware('auth')->name('form/trainers/save');
         Route::post('form/trainers/update', 'updateRecord')->middleware('auth')->name('form/trainers/update');
         Route::post('form/trainers/delete', 'deleteRecord')->middleware('auth')->name('form/trainers/delete');
+
     });
 
     // ------------------------- Training Type  -------------------------//

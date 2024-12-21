@@ -61,70 +61,12 @@
                                 <td hidden class="employees">{{ $training->employees }}</td>
                                 <td hidden class="description">{{ $training->description }}</td>
                                 <td>
-                                    <ul class="team-members">
-                                        <li>
-                                            <a href="#" title="Bernardo Galaviz" data-toggle="tooltip">
-                                                <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Richard Miles" data-toggle="tooltip">
-                                                <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
-                                            </a>
-                                        </li>
-                                        <li class="dropdown avatar-dropdown">
-                                            <a href="#" class="all-users dropdown-toggle" data-toggle="dropdown" aria-expanded="false">+15</a>
-                                            <div class="dropdown-menu dropdown-menu-right">
-                                                <div class="avatar-group">
-                                                    <a class="avatar avatar-xs" href="#">
-                                                        <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
-                                                    </a>
-                                                    <a class="avatar avatar-xs" href="#">
-                                                        <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
-                                                    </a>
-                                                    <a class="avatar avatar-xs" href="#">
-                                                        <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
-                                                    </a>
-                                                    <a class="avatar avatar-xs" href="#">
-                                                        <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
-                                                    </a>
-                                                    <a class="avatar avatar-xs" href="#">
-                                                        <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
-                                                    </a>
-                                                    <a class="avatar avatar-xs" href="#">
-                                                        <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
-                                                    </a>
-                                                    <a class="avatar avatar-xs" href="#">
-                                                        <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
-                                                    </a>
-                                                    <a class="avatar avatar-xs" href="#">
-                                                        <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
-                                                    </a>
-                                                    <a class="avatar avatar-xs" href="#">
-                                                        <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
-                                                    </a>
-                                                </div>
-                                                <div class="avatar-pagination">
-                                                    <ul class="pagination">
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#" aria-label="Previous">
-                                                                <span aria-hidden="true">«</span>
-                                                                <span class="sr-only">Previous</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#" aria-label="Next">
-                                                                <span aria-hidden="true">»</span>
-                                                                <span class="sr-only">Next</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <h2 class="table-avatar">
+                                        <a href="{{ url('employee/profile/'.$training->user_id) }}" class="avatar">
+                                            <img alt="" src="{{ URL::to('/assets/images/'. $training->avatar) }}">
+                                        </a>
+                                        <a href="{{ url('employee/profile/'.$training->user_id) }}">{{ $training->employees }}</a>
+                                    </h2>
                                 </td>
                                 <td>{{ $training->start_date }} - {{ $training->end_date }}</td>
                                 <td hidden class="start_date">{{ $training->start_date }}</td>
@@ -273,8 +215,9 @@
                                     <label class="col-form-label">Training Type</label>
                                     <select class="select" id="e_training_type" name="training_type">
                                         <option selected disabled>-- Select --</option>
-                                        <option value="Node Training">Node Training</option>
-                                        <option value="Swift Training">Swift Training</option>
+                                        @foreach ($training_types as $item)
+                                        <option value="{{ $item->type }}" data-training_type_id="{{ $item->id }}">{{ $item->type }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -282,9 +225,9 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Trainer</label>
                                     <select class="select" id="e_trainer" name="trainer">
-                                        @foreach ($users as $items )
                                         <option selected disabled>-- Select --</option>
-                                        <option value="{{ $items->name }}" data-e_trainer_id={{ $items->user_id }}>{{ $items->name }}</option>
+                                        @foreach ($users as $items )
+                                        <option value="{{ $items->name }}" data-trainer_id={{ $items->user_id }}>{{ $items->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -294,9 +237,9 @@
                                 <div class="form-group">
                                     <label class="col-form-label">Employees</label>
                                     <select class="select" id="e_employees" name="employees">
-                                        @foreach ($users as $items )
                                         <option selected disabled>-- Select --</option>
-                                        <option value="{{ $items->name }}" data-e_employees_id={{ $items->user_id }}>{{ $items->name }}</option>
+                                        @foreach ($users as $items )
+                                        <option value="{{ $items->name }}" data-trainer_id={{ $items->user_id }}>{{ $items->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

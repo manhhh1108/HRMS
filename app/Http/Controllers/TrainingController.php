@@ -9,20 +9,20 @@ use Illuminate\Support\Facades\Log;
 
 class TrainingController extends Controller
 {
-    /** page */ 
+    /** page */
     public function index()
     {
         $trainings = DB::table('trainings')
-        ->join('users', 'users.user_id', 'trainings.trainer_id')
-        ->select('trainings.*', 'users.avatar', 'users.user_id')
-        ->get();
+            ->join('users', 'users.user_id', 'trainings.trainer_id')
+            ->select('trainings.*', 'users.avatar', 'users.user_id')
+            ->get();
 
-    // Truy vấn dữ liệu từ bảng users
-    $users = DB::table('users')->get();
+        // Truy vấn dữ liệu từ bảng users
+        $users = DB::table('users')->get();
 
         $training_types = DB::table('training_types')->get();
         // Log::info("type::" .json_encode($training_type));
-        return view('training.traininglist', compact('users', 'trainings','training_types'));
+        return view('training.traininglist', compact('users', 'trainings', 'training_types'));
     }
 
     /**  Save record */
@@ -71,32 +71,76 @@ class TrainingController extends Controller
     }
 
     /** Update record */
+    // public function updateTraining(Request $request)
+    // {
+    //     $request->validate([
+    //         'id'            => 'required',
+    //         'trainer_id'    => 'required',
+    //         'employees_id'  => 'required|string|max:255',
+    //         'training_type' => 'required|string|max:255',
+    //         'training_cost' => 'required|string|max:255',
+    //         'start_date'    => 'required|date',
+    //         'end_date'      => 'required',
+    //         'description'   => 'required|string|max:255',
+    //         'status'        => 'required|string|max:255',
+    //     ]);
+
+    //     DB::beginTransaction();
+    //     try {
+    //         Training::where('id', $request->id)->update($data);
+
+    //         DB::commit();
+    //         flash()->success('Updated Training successfully :)');
+    //         return redirect()->back();
+    //     } catch (\Exception $e) {
+    //         Log::error($e); // Log the error for debugging
+    //         DB::rollback();
+    //         flash()->error('Failed to update Training :)');
+    //         return redirect()->back();
+    //     }
+    // }
     public function updateTraining(Request $request)
     {
         $request->validate([
-            'id'            => 'required',
-            'trainer_id'    => 'required',
+            'id'            => 'required|integer|exists:trainings,id',
+            'trainer_id'    => 'required|integer|exists:users,user_id',
             'employees_id'  => 'required|string|max:255',
             'training_type' => 'required|string|max:255',
             'training_cost' => 'required|string|max:255',
-            'start_date'    => 'required|date',
-            'end_date'      => 'required',
+            'start_date'    => 'required|date|before_or_equal:end_date',
+            'end_date'      => 'required|date',
             'description'   => 'required|string|max:255',
             'status'        => 'required|string|max:255',
         ]);
 
-        DB::beginTransaction();
         try {
-            Training::where('id', $request->id)->update($request->except('id'));
+            $data = $request->only([
+                'trainer_id',
+                'employees_id',
+                'training_type',
+                'training_cost',
+                'start_date',
+                'end_date',
+                'description',
+                'status',
+            ]);
+
+            $updated = Training::where('id', $request->id)->update($data);
+
+            if ($updated) {
+                flash()->success('Cập nhật Training thành công :)');
+            } else {
+                flash()->warning('Không có thay đổi nào được cập nhật.');
+            }
 
             DB::commit();
             flash()->success('Updated Training successfully :)');
             return redirect()->back();
         } catch (\Exception $e) {
-            Log::error($e); // Log the error for debugging
-            DB::rollback();
-            flash()->error('Failed to update Training :)');
+            Log::error('Lỗi khi cập nhật Training: ' . $e->getMessage());
+            flash()->error('Cập nhật Training thất bại :)');
             return redirect()->back();
         }
     }
+
 }

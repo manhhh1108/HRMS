@@ -19,7 +19,7 @@ class TrainersController extends Controller
             ->select('trainers.*', 'users.avatar', 'users.user_id')
             ->get();
         $user = DB::table('users')->get();
-        
+
 
         return view('trainers.trainers', compact('user', 'trainers',));
     }
@@ -108,6 +108,34 @@ class TrainersController extends Controller
             DB::rollback();
             flash()->error('Trainers delete fail :)');
             return redirect()->back();
+        }
+    }
+
+    public function updateStatus(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            // Tìm trainer theo ID
+            $trainer = Trainer::findOrFail($request->id);
+
+            // Cập nhật trạng thái
+            $trainer->status = $trainer->status === 'active' ? 'inactive' : 'active';
+            $trainer->save();
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Cập nhật trạng thái thành công!',
+                'status'  => $trainer->status,
+            ]);
+        } catch (\Exception $e) {
+            DB::rollback();
+            Log::error('Error updating trainer status: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Cập nhật trạng thái thất bại!',
+            ]);
         }
     }
 }

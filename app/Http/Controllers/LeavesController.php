@@ -7,8 +7,9 @@ use App\Models\LeaveInformation;
 use App\Models\LeavesAdmin;
 use App\Models\Leave;
 use DateTime;
-use Session;
-use DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB as DB;
+use Illuminate\Support\Facades\Log;
 
 class LeavesController extends Controller
 {
@@ -46,7 +47,7 @@ class LeavesController extends Controller
 
         } catch (\Exception $e) {
             // Log the exception and return an appropriate response
-            \Log::error($e->getMessage());
+            Log::error($e->getMessage());
             return response()->json(['error' => 'An error occurred.'], 500);
         }
     }

@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use Session;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB as DB;
+
 
 class Leave extends Model
 {
@@ -59,7 +62,7 @@ class Leave extends Model
             flash()->success('Apply Leave successfully :)');
             return redirect()->back();
         } catch (\Exception $e) {
-            \Log::error($e); // Log the error
+            Log::error($e); // Log the error
             flash()->error('Failed Apply Leave :)');
             return redirect()->back();
         }
