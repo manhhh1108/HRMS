@@ -632,6 +632,7 @@ class ComposerStaticInit7e8c3c14ff33b199b4a0838993eb8423
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\JobController' => __DIR__ . '/../..' . '/app/Http/Controllers/JobController.php',
         'App\\Http\\Controllers\\LeavesController' => __DIR__ . '/../..' . '/app/Http/Controllers/LeavesController.php',
+        'App\\Http\\Controllers\\AttendanceController' => __DIR__ . '/../..' . '/app/Http/Controllers/AttendanceController.php',
         'App\\Http\\Controllers\\LockScreen' => __DIR__ . '/../..' . '/app/Http/Controllers/LockScreen.php',
         'App\\Http\\Controllers\\PayrollController' => __DIR__ . '/../..' . '/app/Http/Controllers/PayrollController.php',
         'App\\Http\\Controllers\\PerformanceController' => __DIR__ . '/../..' . '/app/Http/Controllers/PerformanceController.php',
