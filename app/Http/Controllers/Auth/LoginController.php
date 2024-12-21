@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -43,10 +44,10 @@ class LoginController extends Controller
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
                 Session::put($this->getUserSessionData($user));
-             
+
                 // Update last login
                 $user->update(['last_login' => Carbon::now()]);
-                
+
                 flash()->success('Login successfully :)');
                 return redirect()->intended('home');
             }

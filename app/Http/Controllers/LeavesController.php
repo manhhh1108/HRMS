@@ -76,17 +76,17 @@ class LeavesController extends Controller
         return view('employees.leaves_manage.leavesettings');
     }
 
-    /** Attendance Admin */
-    public function attendanceIndex()
-    {
-        return view('employees.attendance');
-    }
+    // /** Attendance Admin */
+    // public function attendanceIndex()
+    // {
+    //     return view('employees.attendance');
+    // }
 
-    /** Attendance Employee */
-    public function AttendanceEmployee()
-    {
-        return view('employees.attendanceemployee');
-    }
+    // /** Attendance Employee */
+    // public function AttendanceEmployee()
+    // {
+    //     return view('employees.attendanceemployee');
+    // }
 
     /** Leaves Employee Page */
     public function leavesEmployee()
